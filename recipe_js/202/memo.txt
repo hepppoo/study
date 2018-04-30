@@ -1,0 +1,37 @@
+$.ajaxメソッドを利用することで、Ajax通信に祭して様々なオプションを設定できる。
+
+構文
+$.ajax(通信先のURL[,オプション])
+
+$.ajaxメソッドの主なオプション
+
+type
+    HTTP通信の種類（デフォルトはGET）
+data
+    送信データ（ハッシュ形式）
+datatype
+    応答データの型（xml html script json jsonp text）
+async
+    非同期通信にするか（デフォルトはtrue）
+cache
+    通信結果をキャッシュするか（デフォルトはtrue。dataType="script", "jsonp"の場合はfalse）
+contentType
+    Ajaxリクエスト時のContent-Typeヘッダ（デフォルトはapplicaiotn/x-www-form-urlencoded）
+global
+    グローバルイベントを実行するか（デフォルトはtrue）
+username
+    認証時のユーザー名
+password
+    認証時のパスワード
+ifModified
+    応答に前回からの変更がある場合だけ成功ステータスを返すか
+jsonp
+    JSONPリクエスト時に使用するパラメータ名
+processData
+    dataオプションの内容をクエリ情報に変換するか（デフォルトはtrue）
+scriptCharset
+    スクリプトの読み込み時に使用すること文字コードセット（dataType="script", "jsonp"で、実行サーバと外部サーバの文字コードがことなる場合のみに指定）
+timeout
+    通信のタイムアウト時間（ミリ秒）
+dataFilter
+    応答データをフィルタリングする為の関数

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+        $(function() {
+            //ボタンクリック時に、current.phpの結果を取得
+            $('#btn').click(function(e){
+                $('#result').load('current.php');
+            });
+        });
+        </script>
+    </head>
+    <body>
+    <form>
+        <input type="button" id="btn" value="現在日時">
+        <p id="result"></p>
+    </form>
+
+</body>
+</html>

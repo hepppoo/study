@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>非同期通信の結果をJavaScriptで処理したい</title>
+        <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+        <script>
+        $(function(){
+            //検索ボタンクリック時に住所を検索
+            $('#search').click(function(){
+                //proxy.phpに対して、クエリー情報「?zip=〜」で郵便番号を引き渡す
+                $.get('proxy.php',{zip: $('#zip').val()}).done(function(data){
+                    //検索成功時に、その結果をページに反映
+                    $('#result').text(
+                        $('value[state]', data).attr('state') + $('value[city]', data).attr('city')
+                        + $('value[address]', data).attr('address');
+                    );
+                }).fail(function(data) {
+                    window.alert('通信中にエラーが発生しました');
+                });
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <p>利用例：XML形式で提供されるWeb APIを利用する場合</p>
+        <p>$.getメソッドを利用することで、非同期通信で得た結果をJavaScript側で自在に処理できる。<br>
+            そのまま頁に反映できないような結果は、（loadメソッドではなく）$.getmethodを利用する。
+        </p>
+        <dl>
+            <dt>構文</dt>
+            <dd>$.get(通信先のURL, 送信データ)</dd>
+        </dl>
+        <form>
+            <label for="zip">郵便番号：</label>
+            <input id="zip" type="text" size="10">
+            <input id="search" type="button" value="検索">
+        </form>
+        <div id="result"></div>
+    </body>
+</html>

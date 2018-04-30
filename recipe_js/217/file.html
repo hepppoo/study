@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>ローカルファイルの情報を取得したい</title>
+    <style>
+    table, th, td {
+      border-collapse: collapse;
+      border: 2px solid #000;
+      line-height: 1.5;
+    }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+    <form>
+        <label for="file">ファイル：</label>
+        <input id="file" name="file" type="file" multiple>
+    </form>
+    <table>
+        <thead>
+            <tr><th>名前</th><th>種類</th><th>サイズ</th><th>URN</th></tr>
+        </thead>
+        <tbody id="result"></tbody>
+    </table>
+    <script>
+        $(function() {
+            $('#file').change(function(e){
+                if(window.File) {
+                    var str = '';
+                    var inputs = $('#file').get(0).files;
+                    for (var i = 0, len = inputs.length; i < len; i++) {
+                        var input = inputs[i];
+                        str += '<tr>';
+                        str += '<td>' + input.name + '</td>';
+                        str += '<td>' + input.type + '</td>';
+                        str += '<td>' + Math.ceil(input.size/1024) + 'KB</td>';
+                        str += '<td>' + input.urn + '</td>';
+                        str += '</tr>';
+                    }
+                    $('#result').html(str);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>練習</title>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn").click(function(e){
+                $("#result").load("current1.php");
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <input type="button" id="btn" value="現在日時">
+        <p id="result"></p>
+    </form>
+</body>
+</html>

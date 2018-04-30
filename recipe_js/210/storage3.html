@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>ストレージの内用を全て参照したい</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="name">名前：</label>
+            <input id="name" type="text" value="">
+        </div>
+        <div>
+            <input id="remove" type="button" value="削除">
+            <input id="clear" type="button" value="全削除">
+        </div>
+    </form>
+    <table id="result"></table>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script>
+        $(function(){
+            if (localStorage) {
+                var st = localStorage;
+                var show = function() {
+                    var str = '';
+                    for (var i = 0, len = st.length; i < len; i++) {
+                        var k = st.key(i);
+                        str += '<tr><th>' + k + '</th>';
+                        str += '<td>' + st.getItem(k) + '</td></tr>';
+                    }
+                    $('#result').html(str);
+                };
+                show();
+                $('#remove').click(function(e){
+                    st.removeItem($('#name').val());
+                    show();
+                });
+                $('#clear').click(function(e){
+                    st.clear();
+                    show();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

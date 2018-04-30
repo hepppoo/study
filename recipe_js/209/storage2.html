@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>ストレージにオブジェクトを出し入れしたい</title>
+</head>
+<body>
+    <p>利用例：ストレージに配列やハッシュ値を保存する場合</p>
+    <div>氏名：<span id="result1"></div>
+    <div>年齢：<span id="result2"></div>
+    <div>職業：<span id="result3"></div>
+
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script>
+        $(function(){
+            if (localStorage) {
+                var st = localStorage;
+                var info =  {name: '山田太郎', age: 30, occupation: '花屋'};
+                st.setItem('data', JSON.stringify(info));
+
+                var parsed = JSON.parse(st.getItem('data'));
+                $('#result1').html(parsed.name);
+                $('#result2').html(parsed.age);
+                $('#result3').html(parsed.occupation);
+            }
+        });
+    </script>
+</body>
+</html>

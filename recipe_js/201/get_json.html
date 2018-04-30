@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>JSON形式のWeb APIにアクセスしたい</title>
+</head>
+<body>
+    <form>
+        <label for="url">URL : </label>
+        <input id="url" type="text" size="100" value="http://">
+        <input id="search" type="button" value="検索">
+    </form>
+    <div id="count">---</div>
+    <ul id="comment"></ul>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script>
+    $(function() {
+        //検索ボタンクリックで検索を開始
+        $("#search").click(function() {
+            $.getJSON('http://b.hatena.ne.jp/entry/jsonlite/?callback=?',{ url: $('#url').val() })
+        //成功時の処理
+        .done(function(data){
+            //取得したデータをページに反映
+            $('#count').text(data.count + '件');
+            $.each(data.bookmarks, function(index, value){
+                var c = value.comment;
+                if(c !== ''){
+                    $('<li>' + c + '</li>').appendTo('#comment');
+                }
+            });
+        })
+        //失敗時の処理
+        .fail(function(data) {
+            window.alert('通信中にエラーが発生しました');
+        });
+    });
+});
+</script>
+</body>
+</html>

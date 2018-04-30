@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>ブラウザに大きなデータを保存したい</title>
+</head>
+<body>
+
+    <p>利用例：クッキには入りきらないサイズのデータをブラウザに保存する場合</p>
+
+    <div>greet1 : <span id="result1"></span></div>
+    <div>greet2 : <span id="result2"></span></div>
+    <div>greet3 : <span id="result3"></span></div>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        if(localStorage){
+            var st = localStorage;
+            st.setItem('greet1', 'おはよう');
+            st.greet2 = 'こんにちは';
+            st['greet3'] = 'こんばんは';
+            //ストレージから値を取得
+            $('#result1').html(st.getItem('greet1'));
+            $('#result2').html(st.greet2);
+            $('#result3').html(st['greet3']);
+        }
+    });
+    </script>
+</body>
+</html>
