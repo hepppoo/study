@@ -1,0 +1,27 @@
+Amazonのカスタマーレビューをまとめるついでに、スクレイピングの練習
+
+- Mac （ローカル）
+- nodejs  v7.9.0 
+- cheerio-httpcli(node.js用WEBスクレイピングモジュール使用）
+$ npm install cheerio-httpcli
+- async(ES7のasync/awaitじゃなくてnpmのasync・・）
+$ npm install async
+var async = require('async');
+- ファイル 出力はコンソールをカスタム
+
+※非同期処理につまずいた時の参考・ロジック参考
+https://teratail.com/questions/100200
+
+※Consoleのログ出力参考
+https://qiita.com/tadnakam/items/dda690bb184fdc74851f
+
+★OSコマンドで出力できないか悩んだけど、サクッといかなかったので不採用
+でも今後使えそうなので以下メモ
+
+1. まず、shellコマンドを実行するためにはchild_processモジュールをrequireします。
+var exec = require('child_process').exec;
+2. execは以下のようにして、使います。引数は、「コマンド文字列」「options(省略可)」「callback」です。
+callbackに渡されるのは、err、標準出力文字列、標準エラー出力文字列です。
+exec('ls -l ./', function(err, stdout, stderr){
+  /* some process */
+});
